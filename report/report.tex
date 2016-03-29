@@ -1,0 +1,116 @@
+\documentclass[titlepage]{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{latexsym,bm,amsmath,amssymb}
+
+\begin{document}
+
+\title{Report for Computer System Final Project}
+\author{¨º\quad ¡¤\\ ¡§¨®¡ìACM¡ã¨¤}
+\date{2015.6.17}
+\maketitle
+
+\kaishu
+
+\begin{abstract}
+\quad \quad ¡À2015¨º¨²¨¢Verilog HDL¨°¡ÁPipeline¨¤¡è¡Á¡Â¡ã¨¹¡§Pipeline¨´¡À
+¡Â¡ÁBranch PredictorCacheTestbenchMIPS Code¡ã¨¢¡¤
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Project}
+¡À¨¨¨ª¨°¡ã¡Á¡Á¡Â¨´Pipeline¨ª¡Â¡§src
+
+\begin{figure}[H]
+\includegraphics[height=.5\textheight]{constructure.JPG}
+\end{figure}
+\emph{ROM}¡Â\emph{RAM}¡ã¨¹\emph{EX}\emph{ID}\emph{MEM}\emph{ID}¡Á
+Bypassing¡ìPipeline¡Â¨²¨´2-bit¡Á¨²Branch Predictorsrc
+binder.v¡ãbinder\_ram\_rom.v¡ãPipeline¡Â¨´¡À¨®¡ã\emph{ROM}\emph{RAM}¡À¨¢
+testbenchsrctestbench.v\\
+\indent ¡Â¡¤¡À¨¦¡Â¡Á
+\section{IF¡Á}
+¡À\emph{PC}¨¢¨°\emph{ROM}¨¢¡¤\emph{ROM}¨¤¨®\emph{IF/ID}¡Á
+\emph{PC}¡¤4¡¤trivial¡Á¡ãBranch Predictor¡ã\\
+\indent ¨´2-bit¡Á¨²Branch Predictor¡À¨¤
+\begin{figure}[H]
+\includegraphics{bp.JPG}
+\end{figure}
+¨¹\emph{PC}¡Á11¡ÁPredict¨´\emph{PC}¡¤¡Á¨°¨´
+¡À¡ã¡Á¨²¡Á¡§¡¤¡Á¡¤¡Á¡Á¡Â¨®¡Á\emph{ROM}¨°¨®¡¤¨´\emph{ID}
+¡Á¡§¡À¡ÁPredict¡¤¡¤¨²¨ª¨®¨°¨°\emph{PC}¡¤¡À¨ª¡À¡Á¡¤¡¤¨°¡Á
+¡À\emph{PC}\emph{ID}¡¤¨°¡Â¡è¨ª¨®¡Á¨²¡Á\\
+\indent ¡À¡è¨ª¨®¡À¡è¨ª¨¢\emph{IF}¡Á¡¤¡¤¡§¡ã¨¹kill¡¤¡¤¡§\emph{ID}¡Á¨°
+¡À¨º¡¤\emph{ID/EX}¡À¨°\emph{ID/EX}\emph{ID}¡À¨ª¡À¡ã
+¨°NOP¨¹
+\section{IDEX¡Á}
+\emph{ID}\emph{EX}¡Á¨¤¡¤\\
+\indent \emph{ID}¡Á¡¤¨¤¨¨¡Â¡Â¡À¡ã\emph{EX}¡Á
+Bypassing\emph{MEM}¡ÁBypassing\emph{Regfile}¨°¡À\emph{ID}¡Á¨¨
+¡¤LWLW¡¤¡Â¡À¡ã¡¤¨¨¡ã¨°¨¨¡À¡ãcycle¡¤¨°RAW Hazard\\
+\indent \emph{EX}¡Á\emph{ID}¡Á¨¤¡¤¨¤¨°\emph{ID}¡ÁBypassing
+\section{mem¡Á¡ãCache}
+\emph{MEM}¡Á¨ªload¨°store¡À¡ã¡Á¡Â
+¡¤¨°\\
+\indent ¡Á¡Â\emph{RAM}¨¦¨®register¨²
+¡¤¡À\emph{RAM}\emph{cache}¨¦\\
+\indent ¨¢¨®¡À¡¤pipeline¡À¡ã¡Àstall¡À¡è¨¢¨´
+¡À¡¤¡¤¡§¡Á¨®¡À¡¤¨¨\emph{cache}\\
+\indent ¡Á¡Â¡Á¡¤100¡Á¨®\emph{cache}¡ã¨¹4BlockBlock1632¡Á
+\emph{Full-Associative}¡¤¡¤¡§¨®¨´¨¦¡À\\
+\indent ¨°pipeline¨®¡¤¡Á¡Â¡Á¨¢¡èstall¨²¨²\emph{cache}miss¨´¡À¡¤
+200¡Àhit¨°hit¡À¡§¡¤¡À200¡À\emph{MEM}¨¦¡ã¨¬
+\emph{cache}¡§¨¦¡Á¡§¨¨¡Á¨²¡À\emph{cache}¡Àhit¡Á¨²200¡À
+¡Á¨®¡À¡ã¡À¨°¡Á¨¦¨²¨²¡À¨¨¡À¨ª\emph{CACHE}¡Á¡¤¡Á¡¤¨°\emph{MEM}¡Ástall\\
+
+\section{¨²}
+\emph{ID}¡Á\emph{MEM}¡Á¡¤stallstall¨¢5stage
+
+¡ã¨¦\emph{ID}stall¨¨\emph{PC}\emph{IF}\emph{ID}¡Á\emph{EX}\emph{MEM}\emph{WB}¡Á¨¨
+
+\emph{MEM}stall¨¨\emph{PC}\emph{IF}\emph{ID}\emph{EX}\emph{MEM}\emph{RAM}\emph{WB}¡Á¨¨
+
+¡Á¨¨¨¦\emph{CTRL}stall
+
+¨¦¨º¡Á¨¦¨º¡¤¡Àstage¡¤stall¨®¡Âstage¡¤¡¤stall¨¹
+
+¨¦¡À\emph{EX/MEM}\emph{IF/ID}¡Á¡À¨°¨´¡¤¨¦
+
+¡À¨°¨°¡À¨¦¡Àstall¡Á¡À¨°¨´¨¦¨®¨¦¨¹¨°stall¡ã¨¦¡À¡ã¡Á¡À¡ì
+
+¨¨¨¦stall¨¹¡À
+
+¨¦¡À\emph{EX/MEM}¡À\emph{EX}\emph{MEM}¡Àstall¨°\emph{EX}¡¤stall¡À¡Á¨¨¡ã¨´¡À¡è¡Àstall¡Á¨¢¨°¡Â¡ì
+
+\section{MIPS Code¡ã¨¢}
+MIPS Code(MIPS.S)
+\begin{figure}[H]
+\includegraphics[height=.4\textheight]{mips.JPG}
+\end{figure}
+¨¹100¨®$sum$$sum$$sum^2$$sum^2-sum$$-1<1$¨²¨´¡À
+¨¬¨¦¡Á¡Â¡§¡¤cycle¡ãCache¡Á¡ÂBranch Predictor¡¤¡èwhile¡¤¡Á¡ãBypassing¨ª¡Â
+ModelSim¡¤¨®¨¢¡§1001100
+\begin{figure}[H]
+\includegraphics[height=.3\textheight]{1.JPG}
+\end{figure}
+¡Á¨®¡§16¡¤¡À505025502500254978501¡¤\\
+\indent testbench¨¨¡§20¡À¨º¨´¡§¡¤548002740¡À¡Á¡Â
+Cache Miss¨°¨¢¡§¡¤200¡§¡§¡¤200¡ãMIPS Code¡À100CacheMiss7¨®4
+¡Á¡Â¨¢¡§¡¤2200MIPS¡À¡Á500¡§¡¤2740-2200540¡À
+¡Á¡Â¨¦¨ª¡ÂCPI1
+\section{¡Á¨¢}
+¨º¡À¨´¨²¡À¨®Coding¡À¡À¨¤¡§¡ã¡¤¡§¨¨¡À¡¤
+¨²¨¹¡ã¨¢¨¨¡À¨¨¨¨¡Á¨¦¡À¨°¡À¨ªpipeline
+¡Á¨®¡Â¨®¡ì¨´¡Á¨®¡Â¨º¡è¡Á¡Â
+
+¡§projectpipeline¡Á¡Â¨¹¨ª¡ã¨¦¨®¡Àbranch predictorcache¨®
+¨¹¨º¨ª¨°¨°
+
+project¨²¡¤¡¤¨²¨¢
+\end{document}

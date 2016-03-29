@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Project概览}{2}
+\contentsline {section}{\numberline {2}IF阶段}{2}
+\contentsline {section}{\numberline {3}ID与EX阶段}{3}
+\contentsline {section}{\numberline {4}mem阶段以及Cache}{4}
+\contentsline {section}{\numberline {5}暂停机制}{4}
+\contentsline {section}{\numberline {6}MIPS Code以及运行结果}{5}
+\contentsline {section}{\numberline {7}总结}{6}
